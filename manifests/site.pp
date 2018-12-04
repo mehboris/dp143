@@ -34,4 +34,10 @@ notice("Loading mysqlmaster")
     password => 'changeme',
     host     => '%',
     grant    => ['all'],
+}->
+exec { 'active master':
+ cwd => '/etc/puppetlabs/code/environments/production/',
+ command => '/usr/bin/bash upmaster.sh',
+# creates => '/home/git/repos/puppetstart.git/HEAD',
 }
+notice("done script")
