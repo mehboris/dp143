@@ -1,3 +1,7 @@
+
+node default{
+}
+node db-master{
 notice("Loading mysqlmaster")
  class { 'mysql::server':
     restart          => true,
@@ -36,8 +40,51 @@ notice("Loading mysqlmaster")
     grant    => ['all'],
 }->
 exec { 'active master':
- cwd => '/etc/puppetlabs/code/environments/dp143/',
+ cwd => '/etc/puppetlabs/code/environments/production/',
  command => '/usr/bin/bash upmaster.sh',
 # creates => '/home/git/repos/puppetstart.git/HEAD',
 }
 notice("done script")
+}
+node db-slave{
+notice("Loading mysqlslave")
+
+  class { 'mysql::server':
+    restart          => true,
+    root_password    => 'changeme',
+    override_options => {
+      'mysqld' => {
+        'bind_address' => '0.0.0.0',
+        'server-id'         => '2',
+        'binlog-format'     => 'mixed',
+        'log-bin'           => 'mysql-bin',
+        'relay-log'         => 'mysql-relay-bin',
+        'log-slave-updates' => '1',
+        'read-only'         => '1',
+        'replicate-do-db'   => ['demo'],
+      },
+    }
+  }->
+
+  mysql::db { 'demo':
+    ensure   => 'present',
+    user     => 'demo',
+    password => 'changeme',
+    host     => '%',
+    grant    => ['all'],
+}
+
+exec { 'active master':
+ cwd => '/etc/puppetlabs/code/environments/production/',
+ command => '/usr/bin/bash upslave.sh',
+# creates => '/home/git/repos/puppetstart.git/HEAD',
+}
+notice("done script")
+
+}
+
+
+
+
+
+

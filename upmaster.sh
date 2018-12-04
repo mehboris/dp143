@@ -1,5 +1,5 @@
 mysql -u root -e 'FLUSH TABLES WITH READ LOCK;'
-mysql -u root -e 'SHOW MASTER STATUS;'|grep mysql>status`date +%Y-%m-%d.%H:%M:%S`.txt
+mysql -u root -e 'SHOW MASTER STATUS;'|grep mysql>status.txt
 mysqldump -u root demo <employees.sql 
 mysql -u root -e 'UNLOCK TABLES;'
  git config --global user.email "you@example.com"
