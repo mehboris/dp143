@@ -33,7 +33,7 @@ CREATE TABLE `Content1` (
 
 LOCK TABLES `Content1` WRITE;
 /*!40000 ALTER TABLE `Content1` DISABLE KEYS */;
-INSERT INTO `Content1` VALUES ('hello world yuo');
+INSERT INTO `Content1` VALUES ('hello world yuo'),('hello world');
 /*!40000 ALTER TABLE `Content1` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -46,4 +46,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-07  5:03:29
+-- Dump completed on 2018-12-07  5:18:43

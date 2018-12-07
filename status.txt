@@ -1,1 +1,1 @@
-mysql-bin.000005	591	demo	
+mysql-bin.000006	245	demo	
