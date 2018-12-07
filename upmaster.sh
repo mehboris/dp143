@@ -8,7 +8,7 @@ mysql -u root -e 'UNLOCK TABLES;'
   git config --global user.name "Your Name"
 git add .
 git commit -am'new status `date +%Y-%m-%d.%H:%M:%S`'
-git push -u origin master
+git push -u origin mysqlmaster
 echo "aall done"
 
 
